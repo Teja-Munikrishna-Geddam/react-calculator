@@ -1,0 +1,18 @@
+import './App.css';
+import RegularCalculator from './components/RegularCalculator';
+import logo from "./img/logo.png";
+
+function App() {
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <h1 className='heading'>RegularCalculator</h1>
+        <RegularCalculator/>
+        
+      </header>
+    </div>
+  );
+}
+
+export default App;

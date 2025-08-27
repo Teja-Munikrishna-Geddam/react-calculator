@@ -1,0 +1,137 @@
+.App {
+  text-align: center;
+  color: aliceblue;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.App-header {
+  background:none ;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-logo {
+  position: absolute;
+  top: 0;
+  width: 5rem;
+}
+.heading {
+  position: absolute;
+  top: 5%;
+}
+
+.Main-Box {
+  position: absolute;
+  top: 20%;
+  background-color: gray;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid plum transparent;
+  border-radius: 2rem;
+  box-sizing: border-box;
+  width: 70%;
+  height: 75vh;
+}
+
+.Main-Box::before {
+  content: "";
+  position: fixed;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(360deg, red, blue, purple, red);
+  background-size: 400% 400%;
+  z-index: -1;
+  animation: border-glow 6s linear infinite;
+}
+
+/* Glow animation */
+@keyframes border-glow {
+  0% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 50% 0%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  75% {
+    background-position: 50% 100%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.Main-Box::after {
+  content: "";
+  position: fixed;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(270deg, red, blue, purple, red);
+  filter: blur(20px);
+  z-index: -2;
+  animation: border-glow 6s linear infinite;
+}
+
+/* The glowing border */
+.Main-Box::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  padding: 4px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, red, blue, purple, red);
+  animation: spin 4s cubic-bezier(0.95, 0.05, 0.795, 0.035) infinite;
+}
+
+/* Smooth rotation around the box */
+@keyframes spin {
+  0%   { transform: skew()(0deg); 
+         overflow-block: hidden;
+  }
+  100% { transform: skew(360deg);
+         overflow-block: hidden;
+  }
+}
+
+.Input-Box {
+  all: unset;
+  width: 95%;
+  box-sizing: border-box;
+  background-color: aqua;
+  color: black;
+  outline: none;
+  padding: 2rem;
+  margin: 2rem;
+  height: 10vh;
+  border-radius: 1rem;
+  box-decoration-break: slice;
+}
+
+.my-button {
+  font-size: 1em;
+  width: 10rem;
+  margin: 0.5rem;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  border: none;
+  background-color: plum;
+  cursor: pointer;
+}
+
+
