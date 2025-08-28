@@ -56,7 +56,7 @@ return (
             onKeyDown={handleKeyDown}
             placeholder="Enter math expression"
         />
-        <div>
+        <div className="button-box">
             {/* Example buttons */}
             <Button className="button" label="1" onClick={handleButtonClick} />
             <Button className="button" label="2" onClick={handleButtonClick} />
@@ -69,7 +69,7 @@ return (
             <Button className="button" label="9" onClick={handleButtonClick} />
             <Button className="button" label="0" onClick={handleButtonClick} />
             <Button label="AC" onClick={() => {
-                const clear = setValue("");
+                setValue("");
             }} />
             <Button className="button" label="." onClick={handleButtonClick} />
             <Button className="button" label="+" onClick={handleButtonClick} />
