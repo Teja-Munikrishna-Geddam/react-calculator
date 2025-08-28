@@ -2,7 +2,7 @@
   "name": "universal_calculator",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://Teja-Munikrishna-Geddam.github.io/universal_calculator",
+  "homepage": "https://teja-munikrishna-geddam.github.io/universal_calculator",
   "dependencies": {
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.8.0",
