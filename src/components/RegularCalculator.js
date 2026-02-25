@@ -14,6 +14,14 @@ export default function ExpressionInput() {
   };
 
   const evaluateExpression = () => {
+
+    // 🛑 If already showing Error → clear everything
+    if (value === "Error") {
+      setValue("");
+      setLastEvaluated(false);
+      return;
+    }
+
     if (lastEvaluated || value.trim() === "") {
       setValue("");
       setLastEvaluated(false);
@@ -27,49 +35,50 @@ export default function ExpressionInput() {
     } catch (error) {
       setValue("Error");
     }
+
     setLastEvaluated(true);
   };
 
-const operators = ["+", "-", "*", "/", "%"];
+  const operators = ["+", "-", "*", "/", "%"];
 
-const handleButtonClick = (btnValue) => {
-  const lastChar = value.slice(-1);
+  const handleButtonClick = (btnValue) => {
+    const lastChar = value.slice(-1);
 
-  if (btnValue === "Backspace") {
-    setValue((prev) => prev.slice(0, -1));
-    setLastEvaluated(false);
-  } 
-  else if (btnValue === "=") {
-    evaluateExpression();
-  } 
-  else if (btnValue === "AC") {
-    setValue("");
-    setLastEvaluated(false);
-  } 
-  // 🚫 Prevent consecutive operators
-  else if (operators.includes(btnValue)) {
-    if (value === "" || operators.includes(lastChar)) {
-      return;
+    if (btnValue === "Backspace") {
+      setValue((prev) => prev.slice(0, -1));
+      setLastEvaluated(false);
     }
-    setValue((prev) => prev + btnValue);
-  } 
-  // 🚫 Allow '.' only once in entire expression
-  else if (btnValue === ".") {
-    if (value.includes(".")) {
-      return; // ignore if already used once
+    else if (btnValue === "=") {
+      evaluateExpression();
     }
-    setValue((prev) => prev + ".");
-  } 
-  else {
-    if (value === "Error") {
-      setValue(btnValue);
-    } else {
+    else if (btnValue === "AC") {
+      setValue("");
+      setLastEvaluated(false);
+    }
+    // 🚫 Prevent consecutive operators
+    else if (operators.includes(btnValue)) {
+      if (value === "" || operators.includes(lastChar)) {
+        return;
+      }
       setValue((prev) => prev + btnValue);
     }
-  }
+    // 🚫 Allow '.' only once in entire expression
+    else if (btnValue === ".") {
+      if (value.includes(".")) {
+        return; // ignore if already used once
+      }
+      setValue((prev) => prev + ".");
+    }
+    else {
+      if (value === "Error") {
+        setValue(btnValue);
+      } else {
+        setValue((prev) => prev + btnValue);
+      }
+    }
 
-  setLastEvaluated(false);
-};
+    setLastEvaluated(false);
+  };
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
