@@ -3,14 +3,12 @@
   color: aliceblue;
   box-sizing: border-box;
   max-width: 100%;
-  height: 100%;
   margin: 0;
   padding: 0;
 }
 
 .App-header {
   background: none;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -18,6 +16,10 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.button-box {
+  padding-bottom: 0.6rem;
 }
 
 .App-logo {
@@ -42,7 +44,7 @@
   border-radius: 2rem;
   box-sizing: border-box;
   width: 70%;
-  height: 80vh;
+  height: auto;
 }
 
 .Main-Box::before {
@@ -220,7 +222,7 @@
   .Main-Box {
     max-width: 80%;
     top: 18%;
-    height: 78vh;
+    height: auto;
   }
   .heading {
     font-size: xx-large;
@@ -251,7 +253,7 @@
 
   .Main-Box {
     width: 60%;
-    height: 75vh;
+    height: auto;
     top: 20%;
   }
 

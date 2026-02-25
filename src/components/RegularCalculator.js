@@ -30,24 +30,46 @@ export default function ExpressionInput() {
     setLastEvaluated(true);
   };
 
-  const handleButtonClick = (btnValue) => {
-    if (btnValue === "Backspace") {
-      setValue((prev) => prev.slice(0, -1));
-      setLastEvaluated(false);
-    } else if (btnValue === "=") {
-      evaluateExpression();
-    } else if (btnValue === "AC") {
-      setValue("");
-      setLastEvaluated(false);
-    } else {
-      if (value === "Error") {
-        setValue(btnValue);
-      } else {
-        setValue((prev) => prev + btnValue);
-      }
-      setLastEvaluated(false);
+const operators = ["+", "-", "*", "/", "%"];
+
+const handleButtonClick = (btnValue) => {
+  const lastChar = value.slice(-1);
+
+  if (btnValue === "Backspace") {
+    setValue((prev) => prev.slice(0, -1));
+    setLastEvaluated(false);
+  } 
+  else if (btnValue === "=") {
+    evaluateExpression();
+  } 
+  else if (btnValue === "AC") {
+    setValue("");
+    setLastEvaluated(false);
+  } 
+  // 🚫 Prevent consecutive operators
+  else if (operators.includes(btnValue)) {
+    if (value === "" || operators.includes(lastChar)) {
+      return;
     }
-  };
+    setValue((prev) => prev + btnValue);
+  } 
+  // 🚫 Allow '.' only once in entire expression
+  else if (btnValue === ".") {
+    if (value.includes(".")) {
+      return; // ignore if already used once
+    }
+    setValue((prev) => prev + ".");
+  } 
+  else {
+    if (value === "Error") {
+      setValue(btnValue);
+    } else {
+      setValue((prev) => prev + btnValue);
+    }
+  }
+
+  setLastEvaluated(false);
+};
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
@@ -69,7 +91,7 @@ export default function ExpressionInput() {
       />
 
       <div className="button-box">
-        {["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ".", "+", "-", "*", "/", "%", "Backspace", "="].map(
+        {["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ".", "+", "-", "*", "/", "%", "=", "Backspace"].map(
           (label) => (
             <Button
               key={label}
